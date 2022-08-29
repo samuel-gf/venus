@@ -1,2 +1,2 @@
 #!/bin/zsh
-cat $1 | sed -f indent.sed | awk -f indent.awk
+cat $1 | expand | sed -f preformat.sed | awk -f lua.awk

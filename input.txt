@@ -1,4 +1,7 @@
 	if a==   3 then
-	a=4+2
+		if c==7 then
+			print "Hola mundo"
+		end
+	a=c+          2
 	end
 

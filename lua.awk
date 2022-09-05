@@ -1,11 +1,13 @@
 # Increment identation
 function inc(){
+	# sp = spaces
 	printf("%s%s\n", sp[n], $0)
 	n = n + 1
 }
 
 # Decrement identation
 function dec(){
+	# sp = spaces
 	n = n - 1
 	printf("%s%s\n", sp[n], $0)
 }
@@ -13,7 +15,7 @@ function dec(){
 
 BEGIN {
 	FS = "\n"
-	for (i=0; i<=2; i++){
+	for (i=0; i<=10; i++){
 		sp[i] = ""
 		for (j=0; j<i; j++){
 			sp[i] = sp[i] "  "
@@ -33,17 +35,20 @@ BEGIN {
 	next;
 	}
 # IF
-/if/{ inc(); next }
+/^if/{ inc(); next }
 
 # END
-/end/ { dec(); next }
+/^end/ { dec(); next }
 
 # FOR
-/for/{ inc(); next }
+/^for/{ inc(); next }
+
 
 # FUNCTION
-/function/{ inc(); next }
+/^function/{ inc(); next }
 
+# WHILE
+/^while/{ inc(); next }
 
 # GENERIC LINE
 {

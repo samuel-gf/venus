@@ -37,6 +37,9 @@ BEGIN {
 # IF
 /^if/{ inc(); next }
 
+#ELSE
+/^else/{ n = n - 1; printf("%s%s\n", sp[n], $0); n = n + 1; next }
+
 # END
 /^end/ { dec(); next }
 

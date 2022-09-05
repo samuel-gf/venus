@@ -1,12 +1,15 @@
+# Increment identation
 function inc(){
 	printf("%s%s\n", sp[n], $0)
 	n = n + 1
 }
 
+# Decrement identation
 function dec(){
 	n = n - 1
 	printf("%s%s\n", sp[n], $0)
 }
+
 
 BEGIN {
 	FS = "\n"
@@ -19,19 +22,27 @@ BEGIN {
 	n = 0
 }
 
+# {
+/\{/{ inc(); next }
+# }
+/\}/{ dec(); next }
+
+# If ... end (in the same line)
+/if.*end/{
+	printf("%s%s\n", sp[n], $0)
+	next;
+	}
 # IF
-/^[ \t]*if/{ inc(); next }
+/if/{ inc(); next }
 
 # END
-/^[ \t]*end/ { dec(); next }
+/end/ { dec(); next }
 
 # FOR
-/^[ \t]*for/{ inc(); next }
-
+/for/{ inc(); next }
 
 # FUNCTION
-/^[ \t]*for/{ inc(); next }
-
+/function/{ inc(); next }
 
 
 # GENERIC LINE

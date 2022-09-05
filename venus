@@ -1,2 +1,4 @@
 #!/bin/zsh
-cat $1 | expand | sed -f preformat.sed | awk -f lua.awk
+DIR=$(dirname "$0")
+expand | sed -f $DIR/preformat.sed | awk -f $DIR/lua.awk
+#cat $1 | expand | sed -f $DIR/preformat.sed | awk -f $DIR/lua.awk
